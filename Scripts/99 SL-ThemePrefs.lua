@@ -1,184 +1,100 @@
-local SL_CustomPrefs =
-{
-	AllowFailingOutOfSet =
-	{
-		Default = true,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
-	NumberOfContinuesAllowed =
-	{
-		Default = 0,
-		Choices = { 0,1,2,3,4,5,6,7,8,9 },
-		Values = { 0,1,2,3,4,5,6,7,8,9 }
-	},
-
-
-	HideStockNoteSkins =
-	{
-		Default = false,
-		Choices = { "Hide", "Show" },
-		Values 	= { true, false }
-	},
-	MusicWheelStyle =
-	{
-		Default = "ITG",
-		Choices = { "ITG", "IIDX" }
-	},
-	AllowDanceSolo =
-	{
-		Default = false,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
-	DefaultGameMode =
-	{
-		Default = "Competitive",
-		Choices = {
-			THEME:GetString("ScreenSelectPlayMode", "Casual"),
-			THEME:GetString("ScreenSelectPlayMode", "Competitive"),
-			THEME:GetString("ScreenSelectPlayMode", "StomperZ"),
-			THEME:GetString("ScreenSelectPlayMode", "Marathon")
-		},
-		Values 	= { "Casual", "Competitive", "StomperZ", "Marathon" }
-	},
-	TimingWindowAdd = {
-		Default = 0,
-		Choices = { 0, 0.0015 },
-		Values = { 0, 0.0015 }
-	},
-	AutoStyle =
-	{
-		Default = "none",
-		Choices = {
-			THEME:GetString("ScreenSelectStyle", "None"),
-			THEME:GetString("ScreenSelectStyle", "Single"),
-			THEME:GetString("ScreenSelectStyle", "Versus"),
-			THEME:GetString("ScreenSelectStyle", "Double")
-		},
-		Values 	= { "none", "single", "versus", "double" }
-	},
-	VisualTheme =
-	{
-		Default = "Hearts",
-		Choices = { "Hearts", "Arrows" },
-	},
-	RainbowMode = {
-		Default = false,
-		Choices = { "On", "Off" },
-		Values 	= { true , false }
-	},
+local SL_CustomPrefs = {
+	AllowFailingOutOfSet = true,
+	NumberOfContinuesAllowed = 0,
+	MusicWheelStyle = "ITG",
+	AllowDanceSolo = false,
+	DefaultGameMode = "Competitive",
+	AutoStyle = "none",
+	VisualTheme = "Hearts",
+	RainbowMode = false,
 	-- - - - - - - - - - - - - - - - - - - -
 	-- SimplyLoveColor saves the theme color for the next time
 	-- the StepMania application is started.
-	SimplyLoveColor =
-	{
 		-- a nice pinkish-purple, by default
-		Default = 3,
-		Choices = { 1,2,3,4,5,6,7,8,9,10,11,12 },
-		Values = { 1,2,3,4,5,6,7,8,9,10,11,12 }
-	},
-
+	SimplyLoveColor = 3,
 	-- - - - - - - - - - - - - - - - - - - -
 	-- MenuTimer values for various screens
-	ScreenSelectMusicMenuTimer =
-	{
-		Default = 300,
-		Choices = SecondsToMMSS_range(60, 450, 15),
-		Values = range(60, 450, 15),
-	},
-	ScreenPlayerOptionsMenuTimer =
-	{
-		Default = 90,
-		Choices = SecondsToMMSS_range(30, 450, 15),
-		Values = range(30, 450, 15),
-	},
-	ScreenEvaluationMenuTimer =
-	{
-		Default = 60,
-		Choices = SecondsToMMSS_range(15, 450, 15),
-		Values = range(15, 450, 15),
-	},
-	ScreenEvaluationSummaryMenuTimer =
-	{
-		Default = 60,
-		Choices = SecondsToMMSS_range(30, 450, 15),
-		Values = range(30, 450, 15),
-	},
-	ScreenNameEntryMenuTimer =
-	{
-		Default = 60,
-		Choices = SecondsToMMSS_range(15, 450, 15),
-		Values = range(15, 450, 15),
-	},
-
+	ScreenSelectMusicMenuTimer = 300,
+	ScreenPlayerOptionsMenuTimer = 90,
+	ScreenEvaluationMenuTimer = 60,
+	ScreenEvaluationSummaryMenuTimer = 60,
+	ScreenNameEntryMenuTimer = 60,
 	-- - - - - - - - - - - - - - - - - - - -
 	-- Enable/Disable Certain Screens
-	AllowScreenSelectProfile =
-	{
-		Default = false,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
-	AllowScreenSelectColor =
-	{
-		Default = true,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
-	AllowScreenEvalSummary =
-	{
-		Default = true,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
-	AllowScreenGameOver =
-	{
-		Default = true,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
-	AllowScreenNameEntry =
-	{
-		Default = true,
-		Choices = { "Yes", "No" },
-		Values 	= { true, false }
-	},
+	AllowScreenSelectProfile = false,
+	AllowScreenSelectColor = true,
+	AllowScreenEvalSummary = true,
+	AllowScreenGameOver = true,
+	AllowScreenNameEntry = true,
+
+	settings_migrated_from_theme_prefs = false,
 }
 
--- We need to InitAll() now so that ./Scripts/SL_Init.lua can use
--- this theme's ThemePrefs shortly after.
-ThemePrefs.InitAll(SL_CustomPrefs)
+SL_Config = create_lua_config{name= "SL Config", file= "SL_Config", default= SL_CustomPrefs}
+SL_Config:load()
 
--- For more information on how this works, read:
--- ./StepMania 5/Docs/ThemerDocs/ThemePrefs.txt
--- ./StepMania 5/Docs/ThemerDocs/ThemePrefsRows.txt
+local RemovalReasons= {
+	HideStockNoteSkins= "Obsoleted by Shown Noteskins menu provided in 5.1",
+	TimingWindowAdd= "Didn't vyhd explain that TimingWindowAdd is only needed on machines running a pre-r16 version of actual ITG?",
+}
 
-local file = IniFile.ReadFile("Save/ThemePrefs.ini")
-
--- If no [Simply Love] ThemePrefs section is found...
-if not file["Simply Love"] then
-
-	-- ...make one by calling Save()
-	ThemePrefs.Save()
-
-else
-
-	for k,v in pairs( file["Simply Love"] ) do
-
-		-- it's possible a setting exists in the ThemePrefs.ini file
-		-- but does not exist here, where we define the ThemePrefs for this theme!
-		-- Check to ensure that the master defintion returns something for
-		-- each key from ThemePrefs.ini
-		if SL_CustomPrefs[k] then
-
-			-- if we reach here, the setting exists in both the master definition
-			-- as well as the user's ThemePrefs.ini; check for type mismatch now
-			if type( v ) ~= type( SL_CustomPrefs[k].Default ) then
-
-				-- in the event of a type mismatch, overwrite the user's erroneous setting with the default value
-				ThemePrefs.Set(k, SL_CustomPrefs[k].Default)
+local ConfigData= SL_Config:get_data()
+if not ConfigData.settings_migrated_from_theme_prefs then
+	local file = IniFile.ReadFile("Save/ThemePrefs.ini")
+	local sl_section= file["Simply Love"]
+	local migration_message= {}
+	if sl_section then
+		AddMigrationMessage("Found Simply Love section in ThemePrefs.")
+		for field, value in pairs(sl_section) do
+			AddMigrationMessage("Found pref '" .. field .. "' type '" .. type(value) .. "' value '" .. tostring(value) .. "'")
+			if ConfigData[field] ~= nil then
+				if type(value) == type(ConfigData[field]) then
+					AddMigrationMessage("Migrated successfully.")
+					ConfigData[field]= value
+				else
+					AddMigrationMessage("Types do not match, not migrating.")
+				end
+			else
+				if RemovalReasons[field] then
+					AddMigrationMessage("Pref removed: " .. RemovalReasons[field])
+				else
+					AddMigrationMessage("Pref removed, unknown reason.")
+				end
 			end
 		end
+		AddMigrationMessage("Finished processing ThemePrefs section.")
 	end
+	ConfigData.settings_migrated_from_theme_prefs= true
+	SL_Config:set_dirty()
+	SL_Config:save()
+end
+
+local function SL_TimerConfig(timer_name, min)
+	return nesty_options.float_config_val(SL_Config, timer_name, 0, 1, 2, min, 450)
+end
+
+function SL_GetThemePrefsMenu()
+	return {
+		nesty_options.choices_config_val(SL_Config, "AutoStyle", {"none", "single", "versus", "double"}),
+		nesty_options.choices_config_val(SL_Config, "DefaultGameMode", {"Casual", "Competitive", "StomperZ", "Marathon"}),
+		nesty_options.bool_config_val(SL_Config, "AllowFailingOutOfSet"),
+		nesty_options.float_config_val(SL_Config, "NumberOfContinuesAllowed", 0, 0, 1, 0, 9),
+		nesty_options.choices_config_val(SL_Config, "MusicWheelStyle", {"ITG", "IIDX"}),
+		-- TODO: Music wheel speed
+		nesty_options.bool_config_val(SL_Config, "AllowScreenSelectProfile"),
+		nesty_options.bool_config_val(SL_Config, "AllowScreenSelectColor"),
+		nesty_options.bool_config_val(SL_Config, "AllowScreenEvalSummary"),
+		nesty_options.bool_config_val(SL_Config, "AllowScreenNameEntry"),
+		nesty_options.bool_config_val(SL_Config, "AllowScreenGameOver"),
+		nesty_options.bool_config_val(SL_Config, "AllowDanceSolo"),
+		nesty_options.choices_config_val(SL_Config, "VisualTheme", {"Hearts", "Arrows"}),
+		nesty_options.bool_config_val(SL_Config, "RainbowMode"),
+
+		nesty_options.float_config_val(SL_Config, "SimplyLoveColor", 0, 0, 1, 1, 12),
+		SL_TimerConfig("ScreenSelectMusicMenuTimer", 60),
+		SL_TimerConfig("ScreenPlayerOptionsMenuTimer", 30),
+		SL_TimerConfig("ScreenEvaluationMenuTimer", 15),
+		SL_TimerConfig("ScreenEvaluationSummaryMenuTimer", 30),
+		SL_TimerConfig("ScreenNameEntryMenuTimer", 15),
+	}
 end

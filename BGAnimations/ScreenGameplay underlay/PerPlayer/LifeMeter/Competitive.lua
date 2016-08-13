@@ -14,7 +14,7 @@ local meter = Def.ActorFrame{
 
 	InitCommand=cmd(horizalign, left),
 	BeginCommand=function(self)
-		if SL[ToEnumShortString(player)].ActiveModifiers.HideLifebar then
+		if SL_PlayerConfig:get_data(player).HideLifebar then
 			self:visible(false)
 		end
 	end,

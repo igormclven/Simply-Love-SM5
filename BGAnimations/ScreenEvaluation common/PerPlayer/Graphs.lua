@@ -7,7 +7,7 @@ if SL.Global.GameMode ~= "Casual" then
 		-- if RainbowMode is on.  This makes it easier to see with the wacky background.
 		Def.Quad{
 			InitCommand=function(self)
-				if ThemePrefs.Get("RainbowMode") then
+				if SL_Config:get_data().RainbowMode then
 					self:y( _screen.cy + 151):zoomto(300, 54)
 						:diffuse(color("#00000088"))
 				end

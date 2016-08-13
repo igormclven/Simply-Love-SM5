@@ -1,9 +1,12 @@
 local NumColumns = GAMESTATE:GetCurrentStyle():ColumnsPerPlayer()
 local player = ...
 local pn = ToEnumShortString(player)
-local mods = SL[pn].ActiveModifiers
+local mods = SL_PlayerConfig:get_data(player)
 local columns = {}
 
+-- TODO:  Move column flashes to NoteColumn Layers where they belong.
+-- Get rid of this unnecessary code for accounting for mini and position.
+-- -Kyz
 if mods.ColumnFlashOnMiss then
 
 	local af = Def.ActorFrame{
@@ -15,7 +18,7 @@ if mods.ColumnFlashOnMiss then
 			-- becomes 0 to 2, and it becomes necessary to transform...
 			-- a mini value like 35% to a zoom factor like 0.825, or
 			-- a mini value like 150% to a zoom factor like 0.25
-			local zoom_factor = 1 - scale( mods.Mini:gsub("%%","")/100, 0, 2, 0, 1)
+			local zoom_factor = 1
 			self:zoom( zoom_factor )
 		end,
 		JudgmentMessageCommand=function(self, params)

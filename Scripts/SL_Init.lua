@@ -3,25 +3,6 @@
 local PlayerDefaults = {
 	__index = {
 		initialize = function(self)
-			self.ActiveModifiers = {
-				JudgmentGraphic = "Love",
-				Mini = "0%",
-				BackgroundFilter = "Off",
-				SpeedModType = "x",
-				SpeedMod = 1.00,
-				Vocalization = "None",
-				Noteskin = nil,
-				HideTargets = false,
-				HideSongBG = false,
-				HideCombo = false,
-				HideLifebar = false,
-				HideScore = false,
-				ColumnFlashOnMiss = false,
-				SubtractiveScoring = false,
-				MeasureCounter = "None",
-				TargetStatus="Disabled",
-				TargetBar=11,
-			}
 			self.Streams = {
 				SongDir = nil,
 				StepsType = nil,
@@ -35,9 +16,7 @@ local PlayerDefaults = {
 			self.Stages = {
 				Stats = {}
 			}
-			self.CurrentPlayerOptions = {
-				String = nil
-			}
+			self.CurrentPlayerOptions = {}
 		end
 	}
 }
@@ -62,24 +41,24 @@ local GlobalDefaults = {
 				PlayerOptions = "ScreenGameplay",
 				PlayerOptions2 = "ScreenGameplay"
 			}
-			self.ContinuesRemaining = ThemePrefs.Get("NumberOfContinuesAllowed") or 0
+			self.ContinuesRemaining = SL_Config:get_data().NumberOfContinuesAllowed or 0
 			self.Gamestate = {
 				Style = "single"
 			}
-			self.GameMode = ThemePrefs.Get("DefaultGameMode") or "Competitive"
+			self.GameMode = SL_Config:get_data().DefaultGameMode or "Competitive"
 			self.ScreenshotTexture = nil
 			self.MenuTimer = {
-				ScreenSelectMusic = ThemePrefs.Get("ScreenSelectMusicMenuTimer"),
-				ScreenPlayerOptions = ThemePrefs.Get("ScreenPlayerOptionsMenuTimer"),
-				ScreenEvaluation = ThemePrefs.Get("ScreenEvaluationMenuTimer"),
-				ScreenEvaluationSummary = ThemePrefs.Get("ScreenEvaluationSummaryMenuTimer"),
-				ScreenNameEntry = ThemePrefs.Get("ScreenNameEntryMenuTimer"),
+				ScreenSelectMusic = SL_Config:get_data().ScreenSelectMusicMenuTimer,
+				ScreenPlayerOptions = SL_Config:get_data().ScreenPlayerOptionsMenuTimer,
+				ScreenEvaluation = SL_Config:get_data().ScreenEvaluationMenuTimer,
+				ScreenEvaluationSummary = SL_Config:get_data().ScreenEvaluationSummaryMenuTimer,
+				ScreenNameEntry = SL_Config:get_data().ScreenNameEntryMenuTimer,
 			}
 		end,
 
 		-- These values outside initialize() won't be reset each game cycle,
 		-- but are rather manipulated as needed by the theme.
-		ActiveColorIndex = ThemePrefs.Get("SimplyLoveColor") or 1,
+		ActiveColorIndex = SL_Config:get_data().SimplyLoveColor or 1,
 	}
 }
 
@@ -121,7 +100,7 @@ SL = {
 			TimingWindowSecondsRoll=0.350000,
 		},
 		Competitive = {
-			TimingWindowAdd=ThemePrefs.Get("TimingWindowAdd"),
+			TimingWindowAdd=0,
 			RegenComboAfterMiss=5,
 			MaxRegenComboAfterMiss=10,
 			MinTNSToHideNotes=W3,
@@ -153,7 +132,7 @@ SL = {
 			TimingWindowSecondsRoll=0.350000,
 		},
 		Marathon = {
-			TimingWindowAdd=ThemePrefs.Get("TimingWindowAdd"),
+			TimingWindowAdd=0,
 			RegenComboAfterMiss=5,
 			MaxRegenComboAfterMiss=5,
 			MinTNSToHideNotes=W3,

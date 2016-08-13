@@ -24,7 +24,7 @@ local t = Def.ActorFrame{
 				self:diffuse(color("#1e282f"))
 					:zoomto( IsUsingWideScreen() and 320 or 310, 48 )
 
-				if ThemePrefs.Get("RainbowMode") then
+				if SL_Config:get_data().RainbowMode then
 					self:diffusealpha(0.75)
 				end
 			end

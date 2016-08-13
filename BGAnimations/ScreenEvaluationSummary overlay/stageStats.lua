@@ -22,7 +22,7 @@ local colors = {
 	}
 }
 
-local banner_directory = ThemePrefs.Get("VisualTheme")
+local banner_directory = SL_Config:get_data().VisualTheme
 local t = Def.ActorFrame{
 	DrawPageCommand=function(self, params)
 		self:sleep(position_on_screen*0.05):linear(0.15):diffusealpha(0)

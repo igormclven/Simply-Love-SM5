@@ -1,5 +1,6 @@
 local player = ...
 local pss = STATSMAN:GetCurStageStats():GetPlayerStageStats(player)
+local config= SL_PlayerConfig:get_data(player)
 
 -- Pacemaker contributed by JackG
 -- minor cleanup by dguzek and djpohly
@@ -22,15 +23,18 @@ local function GetCurMaxPercentDancePoints()
 end
 
 -- if nobody wants us, we won't appear
-if (SL[ToEnumShortString(player)].ActiveModifiers.TargetStatus == "Disabled") or SL.Global.Gamestate.Style == "double" then
+if (config.TargetStatus == "Disabled") or SL.Global.Gamestate.Style == "double" then
 	return false
 end
 
 local isTwoPlayers = (GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2))
 
+local function conf_wants_bars(conf)
+	return conf.TargetStatus == "Bars" or conf.TargetStatus == "Both"
+end
 local bothWantBars = isTwoPlayers
-                     and (SL.P1.ActiveModifiers.TargetStatus == "Bars" or SL.P1.ActiveModifiers.TargetStatus == "Both")
-                     and (SL.P2.ActiveModifiers.TargetStatus == "Bars" or SL.P2.ActiveModifiers.TargetStatus == "Both")
+	and conf_wants_bars(SL_PlayerConfig:get_data(PLAYER_1))
+	and conf_wants_bars(SL_PlayerConfig:get_data(PLAYER_2))
 
 local targetBarBorderWidth = 2
 
@@ -100,7 +104,7 @@ local previousGrade = nil
 local pbGradeScore = GetTopScore(player, "Personal")
 
 -- get the index of the target chosen in the options menu
-local targetGradeIndex = tonumber(SL[ToEnumShortString(player)].ActiveModifiers.TargetBar)
+local targetGradeIndex = tonumber(config.TargetBar)
 local targetGradeScore = 0
 
 if (targetGradeIndex == 17) then
@@ -244,7 +248,7 @@ local finalFrame = Def.ActorFrame{
 }
 
 -- if the player wants the bar graph
-if (SL[ToEnumShortString(player)].ActiveModifiers.TargetStatus == "Bars" or SL[ToEnumShortString(player)].ActiveModifiers.TargetStatus == "Both") then
+if (config.TargetStatus == "Bars" or config.TargetStatus == "Both") then
 	if isTwoPlayers then
 		-- only two bars in 2 players mode
 		finalFrame[#finalFrame+1] = Def.ActorFrame {
@@ -425,7 +429,7 @@ if (SL[ToEnumShortString(player)].ActiveModifiers.TargetStatus == "Bars" or SL[T
 end
 
 -- pacemaker text (or subtractive scoring, if that's your thing)
-if (SL[ToEnumShortString(player)].ActiveModifiers.TargetStatus == "Target" or SL[ToEnumShortString(player)].ActiveModifiers.TargetStatus == "Both") then
+if (config.TargetStatus == "Target" or config.TargetStatus == "Both") then
 	finalFrame[#finalFrame+1] = Def.BitmapText{
 		Font="_wendy small",
 		Text="+0.00",

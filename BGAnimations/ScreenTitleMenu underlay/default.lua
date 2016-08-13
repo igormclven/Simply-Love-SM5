@@ -1,4 +1,8 @@
-local TextColor = ThemePrefs.Get("RainbowMode") and Color.Black or Color.White
+-- ShowMigrationMessage is called to handle any migration message that was
+-- logged during theme start up. -Kyz
+ShowMigrationMessage()
+
+local TextColor = SL_Config:get_data().RainbowMode and Color.Black or Color.White
 
 local SongStats = SONGMAN:GetNumSongs() .. " songs in "
 SongStats = SongStats .. SONGMAN:GetNumSongGroups() .. " groups, "
@@ -28,7 +32,7 @@ else
 end
 -- - - - - - - - - - - - - - - - - - - - -
 
-local image = ThemePrefs.Get("VisualTheme")
+local image = SL_Config:get_data().VisualTheme
 
 return Def.ActorFrame{
 	InitCommand=function(self)

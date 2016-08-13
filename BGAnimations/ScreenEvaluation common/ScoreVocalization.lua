@@ -43,7 +43,7 @@ return Def.Actor{
 		if pn ~= Digits[ActiveDigit][2] then
 
 			pn = Digits[ActiveDigit][2]
-			voice = SL[pn].ActiveModifiers.Vocalization
+			voice = SL_PlayerConfig:get_data(player).Vocalization
 
 			-- if "Random" was chosen as the vocalization, randomly select a voice from those available
 			if voice == "Random" then
@@ -55,7 +55,7 @@ return Def.Actor{
 		if voice and voice ~= "None" then
 
 			-- if "Blender" was chosen, we want to re-randomize the vocalization for each digit
-			if SL[pn].ActiveModifiers.Vocalization == "Blender" then
+			if SL_PlayerConfig:get_data(player).Vocalization == "Blender" then
 			    voice = RandomizeVocalization()
 			end
 

@@ -29,16 +29,12 @@ return Def.Actor{
 
 			local pn = ToEnumShortString(player)
 
+			-- RestorePreferredOptionLevels probably belongs before ApplyMods,
+			-- because ApplyMods sets some option values from the player config.
+			-- -Kyz
+			RestorePreferredOptionLevels(player, SL[pn].CurrentPlayerOptions)
 			-- see: ./Scripts/SL-PlayerOptions.lua
 			ApplyMods(player)
-
-			-- On first load of ScreenSelectMusic, PlayerOptions will be nil
-			-- So don't bother trying to use it to reset PlayerOptions
-			if SL[pn].CurrentPlayerOptions.String then
-				if SL[pn].CurrentPlayerOptions.String ~= GAMESTATE:GetPlayerState(player):GetPlayerOptionsString("ModsLevel_Preferred") then
-					GAMESTATE:GetPlayerState(player):SetPlayerOptions("ModsLevel_Preferred", SL[pn].CurrentPlayerOptions.String)
-				end
-			end
 		end
 	end
 }

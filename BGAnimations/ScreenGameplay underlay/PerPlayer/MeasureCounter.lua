@@ -1,6 +1,6 @@
 local player = ...
 local pn = ToEnumShortString(player)
-local mods = SL[pn].ActiveModifiers
+local mods = SL_PlayerConfig:get_data(player)
 local streams = SL[pn].Streams
 local PlayerState = GAMESTATE:GetPlayerState(player)
 

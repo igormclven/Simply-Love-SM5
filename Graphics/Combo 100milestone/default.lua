@@ -1,4 +1,4 @@
-local image = ThemePrefs.Get("VisualTheme")
+local image = SL_Config:get_data().VisualTheme
 
 return Def.ActorFrame{
 	LoadActor("explosion.png")..{

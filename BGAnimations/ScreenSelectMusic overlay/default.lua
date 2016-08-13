@@ -1,3 +1,10 @@
+-- ShowMigrationMessage is called to handle any migration message that was
+-- logged during profile loading.   Players can't look at the log file on
+-- the arcade machine, so maybe the message should show more for them? -Kyz
+ShowMigrationMessage()
+reset_needs_defective_field_for_all_players()
+
+
 local t = Def.ActorFrame{
 	ChangeStepsMessageCommand=function(self, params)
 		self:playcommand("StepsHaveChanged", {Direction=params.Direction, Player=params.Player})

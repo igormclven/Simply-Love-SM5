@@ -1,7 +1,7 @@
 -- filter code rewrite
 local player = ...
 local pn = ToEnumShortString(player)
-local mods = SL[pn].ActiveModifiers
+local mods = SL_PlayerConfig:get_data(player)
 
 -- if no BackgroundFilter is necessary, it's safe to bail now
 if mods.BackgroundFilter == "Off" then

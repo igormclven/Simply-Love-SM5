@@ -1,4 +1,4 @@
-local banner_directory = ThemePrefs.Get("VisualTheme")
+local banner_directory = SL_Config:get_data().VisualTheme
 
 return Def.ActorFrame{
 

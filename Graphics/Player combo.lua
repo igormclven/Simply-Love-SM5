@@ -1,6 +1,6 @@
 local player = Var "Player"
 
-if SL[ToEnumShortString(player)].ActiveModifiers.HideCombo then
+if SL_PlayerConfig:get_data(player).HideCombo then
 	return Def.Actor{}
 
 else

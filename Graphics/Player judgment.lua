@@ -1,7 +1,7 @@
 local kids, JudgmentSet
 local player = Var "Player"
 local pn = ToEnumShortString(player)
-local mods = SL[pn].ActiveModifiers
+local mods = SL_PlayerConfig:get_data(player)
 
 -- - - - - - - - - - - - - - - - - - - - - -
 

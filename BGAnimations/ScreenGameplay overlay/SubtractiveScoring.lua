@@ -1,6 +1,6 @@
 local player = ...
 
-if SL[ToEnumShortString(player)].ActiveModifiers.SubtractiveScoring then
+if SL_PlayerConfig:get_data(pn).SubtractiveScoring then
 
   local style = ToEnumShortString(GAMESTATE:GetCurrentStyle():GetStyleType())
   local notefield_width = GAMESTATE:GetCurrentStyle():GetWidth(player)

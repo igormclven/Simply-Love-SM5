@@ -1,4 +1,4 @@
-local file = THEME:GetPathB("", "_shared background normal/" .. ThemePrefs.Get("VisualTheme") .. ".png")
+local file = THEME:GetPathB("", "_shared background normal/" .. SL_Config:get_data().VisualTheme .. ".png")
 
 local t = Def.ActorFrame {
 	OnCommand=cmd(Center;bob;effectmagnitude,0,50,0;effectperiod,8);
@@ -108,4 +108,4 @@ local t = Def.ActorFrame {
 	};
 };
 
-return t;			
+return t;

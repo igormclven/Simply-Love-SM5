@@ -17,15 +17,17 @@ end
 -- we'll retreive it the next time ScreenSelectMusic loads and re-apply those same mods
 -- in this way, we can override the effects of songs that forced modifiers during gameplay
 -- the old-school (ie. ITG) way of GAMESTATE:ApplyGameCommand()
+-- Kyz note:  ApplyGameCommand was removed in 5.1, but there are other ways
+-- to set the preferred options.
 local Players = GAMESTATE:GetHumanPlayers()
 for player in ivalues(Players) do
 	local pn = ToEnumShortString(player)
-	SL[pn].CurrentPlayerOptions.String = GAMESTATE:GetPlayerState(player):GetPlayerOptionsString("ModsLevel_Preferred")
+	SL[pn].CurrentPlayerOptions = GetPreferredOptionLevels(player)
 
 
 	-- Check if MeasureCounter is turned on;
 	-- we may (or may not) need to parse the chart.
-	local mods = SL[pn].ActiveModifiers
+	local mods = SL_PlayerConfig:get_data(player)
 	if mods.MeasureCounter and mods.MeasureCounter ~= "None" then
 
 		local song_dir = GAMESTATE:GetCurrentSong():GetSongDir()
@@ -48,7 +50,7 @@ for player in ivalues(Players) do
 	end
 end
 
-local image = ThemePrefs.Get("VisualTheme")
+local image = SL_Config:get_data().VisualTheme
 
 local t = Def.ActorFrame{
 

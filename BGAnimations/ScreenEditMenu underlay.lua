@@ -3,7 +3,8 @@
 -- ratemod applied into another, different song.
 --
 -- see: OptionRowSongMusicRate() in ./Scripts/SL-PlayerOptions.lua
-GAMESTATE:ApplyGameCommand("mod,1.0xmusic")
+GAMESTATE:GetSongOptionsObject("ModsLevel_Preferred"):MusicRate(1)
+GAMESTATE:ApplyPreferredSongOptionsToOtherLevels()
 SL.Global.ActiveModifiers.MusicRate = 1
 
 

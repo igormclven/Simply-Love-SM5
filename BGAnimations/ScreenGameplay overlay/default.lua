@@ -19,7 +19,8 @@ local t = Def.ActorFrame{
 			local p = ToEnumShortString(player)
 			SL[p].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].duration = duration_played
 		end
-	end
+	end,
+	use_newfield_actor(),
 }
 
 for player in ivalues( GAMESTATE:GetHumanPlayers() ) do

@@ -5,7 +5,7 @@ else
 
 		Def.Quad{
 			InitCommand=function(self)
-				if ThemePrefs.Get("RainbowMode") then
+				if SL_Config:get_data().RainbowMode then
 					self:Center():FullScreen():diffuse(Color.White)
 				else
 					self:visible(false)

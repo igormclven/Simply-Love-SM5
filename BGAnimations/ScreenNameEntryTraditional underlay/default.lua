@@ -80,7 +80,7 @@ local t = Def.ActorFrame {
 	end
 }
 
-local banner_directory = ThemePrefs.Get("VisualTheme")
+local banner_directory = SL_Config:get_data().VisualTheme
 -- Things that are constantly on the screen (fallback banner + masks)
 t[#t+1] = Def.ActorFrame {
 

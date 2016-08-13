@@ -7,7 +7,7 @@ Branch.AllowScreenNameEntry = function()
 	if SL.Global.GameMode == "Casual" then
 		return Branch.AfterProfileSaveSummary()
 
-	elseif ThemePrefs.Get("AllowScreenNameEntry") then
+	elseif SL_Config:get_data().AllowScreenNameEntry then
 		return "ScreenNameEntryTraditional"
 
 	else
@@ -16,7 +16,7 @@ Branch.AllowScreenNameEntry = function()
 end
 
 Branch.AllowScreenEvalSummary = function()
-	if ThemePrefs.Get("AllowScreenEvalSummary") then
+	if SL_Config:get_data().AllowScreenEvalSummary then
 		return "ScreenEvaluationSummary"
 	else
 		return Branch.AllowScreenNameEntry()
@@ -24,7 +24,7 @@ Branch.AllowScreenEvalSummary = function()
 end
 
 Branch.AllowScreenSelectProfile = function()
-	if ThemePrefs.Get("AllowScreenSelectProfile") then
+	if SL_Config:get_data().AllowScreenSelectProfile then
 		return "ScreenSelectProfile"
 	else
 		return Branch.AllowScreenSelectColor()
@@ -32,7 +32,7 @@ Branch.AllowScreenSelectProfile = function()
 end
 
 Branch.AllowScreenSelectColor = function()
-	if ThemePrefs.Get("AllowScreenSelectColor") and not ThemePrefs.Get("RainbowMode") then
+	if SL_Config:get_data().AllowScreenSelectColor and not SL_Config:get_data().RainbowMode then
 		return "ScreenSelectColor"
 	else
 		return Branch.AfterScreenSelectColor()
@@ -40,7 +40,7 @@ Branch.AllowScreenSelectColor = function()
 end
 
 Branch.AfterScreenSelectColor = function()
-	local preferred_style = ThemePrefs.Get("AutoStyle")
+	local preferred_style = SL_Config:get_data().AutoStyle
 	if preferred_style ~= "none" then
 		-- If "versus" ensure that both players are actually considered joined.
 		if preferred_style == "versus" then
@@ -101,7 +101,7 @@ end
 
 Branch.PlayerOptions = function()
 	if SCREENMAN:GetTopScreen():GetGoToOptions() then
-		return "ScreenPlayerOptions"
+		return "ScreenNestyPlayerOptions"
 	else
 		return "ScreenGameplay"
 	end
@@ -166,7 +166,7 @@ Branch.AfterProfileSave = function()
 		end
 
 		-- If we don't allow players to fail out of a set early
-		if ThemePrefs.Get("AllowFailingOutOfSet") == false then
+		if SL_Config:get_data().AllowFailingOutOfSet == false then
 
 			-- check first to see how many songs are remaining
 			-- if none...
@@ -240,7 +240,7 @@ Branch.AfterProfileSave = function()
 end
 
 Branch.AfterProfileSaveSummary = function()
-	if ThemePrefs.Get("AllowScreenGameOver") then
+	if SL_Config:get_data().AllowScreenGameOver then
 		return "ScreenGameOver"
 	else
 		return Branch.AfterInit()

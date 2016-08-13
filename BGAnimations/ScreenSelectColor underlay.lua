@@ -7,7 +7,7 @@ local ColorSelected = false
 
 local NumHeartsToDraw = IsUsingWideScreen() and 11 or 7
 
-local image = string.sub(ThemePrefs.Get("VisualTheme"),1,-2)
+local image = string.sub(SL_Config:get_data().VisualTheme,1,-2)
 
 -- this handles user input
 local function input(event)

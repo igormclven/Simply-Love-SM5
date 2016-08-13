@@ -1,4 +1,4 @@
-local image = ThemePrefs.Get("VisualTheme")
+local image = SL_Config:get_data().VisualTheme
 local game = GAMESTATE:GetCurrentGame():GetName()
 if game ~= "dance" and game ~= "pump" then
 	game = "techno"

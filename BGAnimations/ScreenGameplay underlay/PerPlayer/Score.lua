@@ -1,6 +1,6 @@
 local player = ...
 
-if SL[ ToEnumShortString(player) ].ActiveModifiers.HideScore then
+if SL_PlayerConfig:get_data(player).HideScore then
 	return false
 else
 
