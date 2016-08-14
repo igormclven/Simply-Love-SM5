@@ -29,7 +29,7 @@ local OptionConversions= {
 		AddMigrationMessage("Converted Mini '" .. value .. "' to zoom '" .. zoom .. "'.")
 	end,
 	SpeedModType= function(pn, config_data, value)
-		local type_conv= {M= "maximum", C= "constant", X= "multiple"}
+		local type_conv= {M= "maximum", C= "constant", x= "multiple"}
 		newfield_prefs_config:get_data(pn).speed_type= type_conv[value]
 		AddMigrationMessage("Converted SpeedModType ".. value .. " to " .. type_conv[value] .. ".")
 	end,

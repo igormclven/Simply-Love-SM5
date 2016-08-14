@@ -30,7 +30,7 @@ if SL.Global.GameMode ~= "Casual" and SL.Global.GameMode ~= "StomperZ" then
 		local danger = Def.Quad{
 			Name="Danger" .. ToEnumShortString(Player),
 			InitCommand=function(self)
-				self:visible(not SL_Player_config:get_data(Player).HideLifebar)
+				self:visible(not SL_PlayerConfig:get_data(Player).HideLifebar)
 				self:diffusealpha(0)
 
 				if IsPlayingDouble or PREFSMAN:GetPreference("Center1Player") and GAMESTATE:GetNumSidesJoined() == 1 then
