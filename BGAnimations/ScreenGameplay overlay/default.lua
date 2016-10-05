@@ -20,7 +20,7 @@ local t = Def.ActorFrame{
 			SL[p].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].duration = duration_played
 		end
 	end,
-	use_newfield_actor(),
+	notefield_prefs_actor(),
 }
 
 for player in ivalues( GAMESTATE:GetHumanPlayers() ) do

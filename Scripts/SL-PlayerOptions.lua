@@ -25,19 +25,19 @@ local OptionConversions= {
 		-- ... every time you store a number as a string, I delay a release.
 		local value_as_number= tonumber(value:sub(1, -2)) * .01
 		local zoom= 1 - (value_as_number  * .5)
-		newfield_prefs_config:get_data(pn).zoom= zoom
-		newfield_prefs_config:set_dirty(pn)
+		notefield_prefs_config:get_data(pn).zoom= zoom
+		notefield_prefs_config:set_dirty(pn)
 		AddMigrationMessage("Converted Mini '" .. value .. "' to zoom '" .. zoom .. "'.")
 	end,
 	SpeedModType= function(pn, config_data, value)
 		local type_conv= {M= "maximum", C= "constant", x= "multiple"}
-		newfield_prefs_config:get_data(pn).speed_type= type_conv[value]
-		newfield_prefs_config:set_dirty(pn)
+		notefield_prefs_config:get_data(pn).speed_type= type_conv[value]
+		notefield_prefs_config:set_dirty(pn)
 		AddMigrationMessage("Converted SpeedModType ".. value .. " to " .. type_conv[value] .. ".")
 	end,
 	SpeedMod= function(pn, config_data, value)
-		newfield_prefs_config:get_data(pn).speed_mod= value
-		newfield_prefs_config:set_dirty(pn)
+		notefield_prefs_config:get_data(pn).speed_mod= value
+		notefield_prefs_config:set_dirty(pn)
 	end,
 }
 
@@ -71,7 +71,7 @@ local function SL_LoadProfile(profile, dir, pn)
 			config_data.settings_migrated_from_5_0 = true
 			SL_PlayerConfig:set_dirty(pn)
 			SL_PlayerConfig:save(pn)
-			newfield_prefs_config:save(pn)
+			notefield_prefs_config:save(pn)
 		end
 	end
 end

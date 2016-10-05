@@ -7,6 +7,9 @@ GAMESTATE:GetSongOptionsObject("ModsLevel_Preferred"):MusicRate(1)
 GAMESTATE:ApplyPreferredSongOptionsToOtherLevels()
 SL.Global.ActiveModifiers.MusicRate = 1
 
+-- I'm not going to do theme design stuff to decide how the new menu should look. -Kyz
+do return Def.Actor{} end
+
 
 -- down lower in this file, we loop seven times to create seven "rows" of grey quads
 -- one for each: group, song, type, steps, fill type, fill steps, action

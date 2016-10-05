@@ -1,21 +1,24 @@
 # TODO
 
-## Theme stuff
+## Theme stuff for dbk2
 * Icons in Graphics/menu_icons need to be redrawn.
 * ScreenThemeOptions needs styling on the menu.
 * ScreenNestyPlayerOptions needs styling on the menu.
-* Remove old ScreenPlayerOptions and ScreenPlayerOptions2.
-* Translation strings for ScreenThemeOptions and ScreenNestyPlayerOptions.
-* ScreenEditMenu needs to be redone.
-* Add a ScreenEdit overlay that allows toggling slow music rate and adjusting scroll speed with hot keys.
+* ScreenEditMenu needs styling on the menu.  The actors on the screen are now provided by the theme, so the workarounds used in the underlay should not be necessary.
+* ScreenEdit option_menu needs styling on the menu.
 * Resolve whether TimingWindowAdd needs to be in SL_Config.
+* Figure out a good solution for showing players a message when their profile has been migrated to the lua config system.
+
+## Theme stuff for kyz
+* Translation strings for ScreenThemeOptions and ScreenNestyPlayerOptions.
+* Add a ScreenEdit overlay that allows toggling slow music rate and adjusting scroll speed with hot keys.
 * Handle the DecentsWayOffs preference.
 * Move ColumnFlashOnMiss to NoteColumn layers so it can stick to the columns properly when mods occur.  (Mini handling is broken for the moment)
 * Move ScreenFilter to NoteField layers so it can stick to the field properly when mods occur.
 * Put hold judgments in NoteColumn layers if they're used.
 * JudgmentGraphic needs to be fixed.
-* Figure out a good solution for showing players a message when their profile has been migrated to the lua config system.
 * Convert OptionRowLongAndMarathonTime options.
+* Menu timer on ScreenNestyPlayerOptions.
 
 ## Engine stuff
 * The engine needs a way for the theme to create noteskin actors.
